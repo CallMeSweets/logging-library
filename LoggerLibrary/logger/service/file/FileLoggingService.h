@@ -6,12 +6,10 @@
 #define LOGGERLIBRARY_FILELOGGINGSERVICE_H
 
 #include "../LoggingService.h"
-#include "../../model/Log.h"
 
 class FileLoggingService: public LoggingService{
 public:
-    void log(Log* log, int args) override;
-    const char* getCurrentTimestamp();
+    void log(Log* log) override;
     FileLoggingService(const char* filePath);
     ~FileLoggingService();
 

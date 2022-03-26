@@ -4,28 +4,26 @@
 
 #include "ElasticLoggingService.h"
 
-void ElasticLoggingService::log(Log* log, int args)
+void ElasticLoggingService::log(Log* log)
 {
-
+    send(log);
 }
 
-void doRequest()
+void ElasticLoggingService::send(Log* log)
 {
+    string body = log -> toJson();
+    cpr::Url urlEs{this -> url};
+    cpr::Response response = cpr::Post(urlEs, cpr::Header{{"Content-Type", "application/json"}}, cpr::Body{body});
 
-}
-const char* doRequestBody(Log* log, int args)
-{
-    string body{R"({
-  "message": "sgsg",
-  "level": "ERROR",
-  "code": 3,
-  "class": "aaaaa"
-})"};
+    cout << response.status_code;
 }
 
-ElasticLoggingService::ElasticLoggingService(const char* newIndexName)
+ElasticLoggingService::ElasticLoggingService(const string& newIndexName, const string& newHost, const string& newPort)
 {
     this -> indexName = newIndexName;
+    this -> host = newHost;
+    this -> port = newPort;
+    this -> url = host + ":" + port + "/" + indexName + "/_doc";
 }
 
 ElasticLoggingService::~ElasticLoggingService()

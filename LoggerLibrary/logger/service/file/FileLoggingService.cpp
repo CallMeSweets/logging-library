@@ -4,14 +4,13 @@
 
 #include "FileLoggingService.h"
 #include <stdio.h>
-#include <ctime>
 
 using namespace std;
 
-void FileLoggingService::log(Log* log, int args) {
+void FileLoggingService::log(Log* log) {
     if(file)
     {
-        fprintf(file, "%s\t", getCurrentTimestamp());
+        fprintf(file, "%s\t", log -> getTimestamp());
         fprintf(file, "%s", log -> getPriorityName());
         fprintf(file, log -> getMessage(), log -> getArgs());
         fprintf(file, "\n");
@@ -34,12 +33,4 @@ FileLoggingService::FileLoggingService(const char* filePath){
 FileLoggingService::~FileLoggingService() {
     fclose(file);
     file = nullptr;
-}
-
-const char* FileLoggingService::getCurrentTimestamp()
-{
-    time_t now = time(0);
-    char* time =  ctime(&now);
-    time[strcspn(time, "\n")] = '\0';
-    return time;
 }

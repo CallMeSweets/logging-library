@@ -42,10 +42,25 @@ void Log::setPriority(LogPriority::LogPriority newPriority){
     this->priority = newPriority;
 }
 
-void Log::setTimestamp(const char *newTimestamp) {
-    this -> timestamp = timestamp;
+void Log::setTimestamp(const char* newTimestamp) {
+    this -> timestamp = newTimestamp;
 }
 
 void Log::setArgs(int newArgs){
     this -> args = newArgs;
+}
+
+string Log::toJson() {
+    string begin = "{";
+    string end = "}";
+    string json =
+            begin
+            + "\"timestamp\": " + "\"" + this->getTimestamp()+ "\","
+            + "\"message\": " + "\"" + this->getMessage()+ "\","
+            + "\"priority\": " + "\"" + this->getPriorityName()+ "\","
+            + "\"args\": " + "\"" + to_string(this->getArgs()) + "\"    " +
+            end
+            ;
+
+    return json;
 }

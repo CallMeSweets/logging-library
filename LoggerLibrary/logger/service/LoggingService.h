@@ -2,14 +2,15 @@
 // Created by ola on 25.03.2022.
 //
 
-#include "../model/Log.h"
-#include <iostream>
-#include <string.h>
+#ifndef LOGGERLIBRARY_LOGGINGSERVICE_H
+#define LOGGERLIBRARY_LOGGINGSERVICE_H
 
-using namespace std;
+#include "../model/Log.h"
 
 class LoggingService {
 public:
-    virtual void log(Log* log, int args) = 0;
+    virtual void log(Log* log) = 0;
     ~LoggingService() = default;
 };
+
+#endif

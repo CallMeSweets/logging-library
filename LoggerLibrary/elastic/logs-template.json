@@ -10,13 +10,13 @@
         "message": {
           "type": "text"
         },
-        "level": {
+        "priority": {
           "type": "keyword"
         },
-        "code": {
-          "type": "integer"
+        "timestamp": {
+          "type": "text"
         },
-        "class": {
+        "args": {
           "type": "text"
         }
       }

@@ -7,7 +7,9 @@
 
 #include "LogPriority.h"
 #include <cstring>
-#include <stdio.h>
+#include <string>
+
+using namespace std;
 
 class Log {
 private:
@@ -21,6 +23,7 @@ public:
     const char* getTimestamp();
     int getArgs();
     LogPriority::LogPriority getPriority();
+    string toJson();
 
     void setMessage(const char* newMessage);
     void setTimestamp(const char* newTimestamp);

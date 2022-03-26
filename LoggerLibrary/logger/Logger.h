@@ -9,7 +9,7 @@
 #include <mutex>
 #include <ctime>
 #include <string.h>
-#include "service/file/FileLoggingService.h"
+#include "service/LoggingService.h"
 #include "model/LogPriority.h"
 
 using namespace std;
@@ -105,19 +105,19 @@ private:
         if(priority <= log -> getPriority())
         {
             std::scoped_lock lock(log_mutex);
-            printf("%s\t", getCurrentTimestamp());
+            printf("%s\t", log -> getTimestamp());
             printf("%s", log -> getPriorityName());
             printf(log -> getMessage(), log -> getArgs());
             printf("\n");
 
             if(service)
             {
-                service -> log(log, log -> getArgs());
+                service -> log(log);
             }
         }
     }
 
-    const char* getCurrentTimestamp()
+    static char* getCurrentTimestamp()
     {
         time_t now = time(0);
         char* time =  ctime(&now);

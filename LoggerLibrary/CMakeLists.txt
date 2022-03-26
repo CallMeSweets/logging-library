@@ -3,7 +3,7 @@ project(LoggerLibrary)
 
 set(CMAKE_CXX_STANDARD 23)
 
-set(HEADERS_FILES logger/Logger.h logger/model/Log.h logger/service/file/FileLoggingService.h logger/service/elastic/ElasticLoggingService.h)
+set(HEADERS_FILES logger/Logger.h logger/model/Log.h logger/model/LogPriority.h logger/service/LoggingService.h logger/service/file/FileLoggingService.h logger/service/elastic/ElasticLoggingService.h)
 set(SOURCES_FILES main.cpp logger/model/Log.cpp logger/service/file/FileLoggingService.cpp logger/service/elastic/ElasticLoggingService.cpp)
 
 include(FetchContent)
