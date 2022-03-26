@@ -1,0 +1,25 @@
+//PUT _index_template/application-logs
+{
+  "index_patterns": ["logging-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1
+    },
+    "mappings": {
+      "properties": {
+        "message": {
+          "type": "text"
+        },
+        "level": {
+          "type": "keyword"
+        },
+        "code": {
+          "type": "integer"
+        },
+        "class": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}
