@@ -11,6 +11,8 @@
 #include <string.h>
 #include "service/LoggingService.h"
 #include "model/LogPriority.h"
+#include <list>
+#include <iostream>
 
 using namespace std;
 
@@ -19,15 +21,18 @@ class Logger
 private:
     LogPriority::LogPriority priority = LogPriority::InfoPriority;
     std::mutex log_mutex;
-    LoggingService* service = nullptr;
+    list<LoggingService*> services;
 public:
     static void setPriority(LogPriority::LogPriority priority) {
         getInstance().priority = priority;
     }
 
-    static void enableFileService(LoggingService* loggingService){
-        Logger& logger = getInstance();
-        logger.service = loggingService;
+    static void enableService(LoggingService* loggingService){
+        getInstance().pushBackService(loggingService);
+    }
+
+    static void disableService(int instance){
+        getInstance().freeService(instance);
     }
 
     template<typename... Args>
@@ -110,9 +115,12 @@ private:
             printf(log -> getMessage(), log -> getArgs());
             printf("\n");
 
-            if(service)
+            if(!services.empty())
             {
-                service -> log(log);
+                for (const auto &service : services){
+                    cout << "instance: " << service -> instance();
+                    service->log(log);
+                }
             }
         }
     }
@@ -125,8 +133,22 @@ private:
         return time;
     }
 
+    void pushBackService(LoggingService* loggingService){
+        services.push_back(loggingService);
+    }
+
     void freeServices(){
-        delete service;
+        for (const auto &service : services){
+            delete service;
+        }
+    }
+
+    void freeService(int instance) {
+        for (const auto &service : services){
+            if(service->instance() == instance) {
+                delete service;
+            }
+        }
     }
 
 };

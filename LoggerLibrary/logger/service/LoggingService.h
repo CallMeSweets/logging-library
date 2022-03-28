@@ -10,6 +10,7 @@
 class LoggingService {
 public:
     virtual void log(Log* log) = 0;
+    virtual int instance() = 0;
     ~LoggingService() = default;
 };
 

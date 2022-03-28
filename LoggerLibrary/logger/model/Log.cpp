@@ -10,16 +10,7 @@ const char* Log::getMessage() {
 }
 
 const char* Log::getPriorityName() {
-    switch (priority)
-    {
-        case LogPriority::InfoPriority: return "[INFO] ";
-        case LogPriority::WarnPriority: return "[WARN] ";
-        case LogPriority::TracePriority: return "[TRACE] ";
-        case LogPriority::DebugPriority: return "[DEBUG] ";
-        case LogPriority::ErrorPriority: return "[ERROR] ";
-        case LogPriority::CriticalPriority: return "[CRITICAL] ";
-        default: return "[UNKNOWN] ";
-    }
+    return LogPriority::getPriorityName(priority);
 }
 
 LogPriority::LogPriority Log::getPriority() {

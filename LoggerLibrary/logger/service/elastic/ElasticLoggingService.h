@@ -15,9 +15,9 @@ using namespace std;
 class ElasticLoggingService: public LoggingService{
 public:
     void log(Log* log) override;
+    int instance() override;
     void send(Log* log);
     ElasticLoggingService(const string& newIndexName, const string& newHost, const string& newPort);
-    ~ElasticLoggingService();
 
 private:
     string indexName;

@@ -10,7 +10,8 @@
 class FileLoggingService: public LoggingService{
 public:
     void log(Log* log) override;
-    FileLoggingService(const char* filePath);
+    int instance() override;
+    explicit FileLoggingService(const char* filePath);
     ~FileLoggingService();
 
 private:

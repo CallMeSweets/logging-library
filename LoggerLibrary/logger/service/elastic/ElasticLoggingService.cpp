@@ -15,7 +15,7 @@ void ElasticLoggingService::send(Log* log)
     cpr::Url urlEs{this -> url};
     cpr::Response response = cpr::Post(urlEs, cpr::Header{{"Content-Type", "application/json"}}, cpr::Body{body});
 
-    cout << response.status_code;
+    delete log;
 }
 
 ElasticLoggingService::ElasticLoggingService(const string& newIndexName, const string& newHost, const string& newPort)
@@ -26,7 +26,6 @@ ElasticLoggingService::ElasticLoggingService(const string& newIndexName, const s
     this -> url = host + ":" + port + "/" + indexName + "/_doc";
 }
 
-ElasticLoggingService::~ElasticLoggingService()
-{
-
+int ElasticLoggingService::instance() {
+    return 2;
 }

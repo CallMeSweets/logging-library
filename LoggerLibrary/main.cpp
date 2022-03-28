@@ -1,42 +1,45 @@
 #include "logger/Logger.h"
-#include "logger/service/elastic/ElasticLoggingService.h"
-#include "logger/service/file/FileLoggingService.h"
-#include "yaml-cpp/yaml.h"
+#include "logger/parser/YamlConfigurationParser.h"
 
 #include <thread>
+#include <chrono>
 
 
 void logzz(int n){
-    Logger::Info("info secret", n);
+    int i = 0;
+//    while(true){
+        i++;
+//        std::chrono::seconds timespan(3);
+//        std::this_thread::sleep_for(timespan);
+        Logger::Info("info secret", n);
+//        if(i > 100)
+//            break;
+//    }
+}
+
+void logzz2(int n){
+    YamlConfigurationParser::read();
 }
 
 
 int main() {
+    logzz2(1);
 
-//    LoggingService* service = new FileLoggingService{"logg.txt"};
-//    Logger::enableFileService(service);
-//    LoggingService* elService = new ElasticLoggingService{"logging-03-2022", "localhost", "9200"};
-//    Logger::enableFileService(elService);
+//    std::thread threads[2];
 
-//    std::thread threads[10];
-//
-//    for (int i = 0; i < 10; ++i) {
-//        threads[i] = std::thread(logzz, i);
-//    }
-//
-//    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 10; ++i) {
+        logzz(i);
+//        if(i < 2){
+//            threads[i] = std::thread(logzz, i);
+//        } else {
+//            threads[i] = std::thread(logzz2, i);
+//        }
+    }
+
+//    for (int i = 0; i < 2; ++i) {
 //        threads[i].join();
 //    }
 
-    YAML::Node doc = YAML::Load("{name: Brewers, city: Milwaukee}");
-//    if (node["aaaaaa"]) {
-//        const std::string password = node["aaaaaa"].as<std::string>();
-//        std::cout << password << "\n";
-//    }
-    if (doc["name"]) {
-        std::cout << doc["name"].as<std::string>() << "\n";
-    }
-//    doc["aaa"] = 5;
-    std::cout << "aa";
+
     return 0;
 }

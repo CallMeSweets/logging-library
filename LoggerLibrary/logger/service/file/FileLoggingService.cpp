@@ -34,3 +34,7 @@ FileLoggingService::~FileLoggingService() {
     fclose(file);
     file = nullptr;
 }
+
+int FileLoggingService::instance() {
+    return 1;
+}
