@@ -14,6 +14,7 @@ set(HEADERS_FILES
 
 set(SOURCES_FILES
         main.cpp
+        logger/Logger.cpp
         logger/model/Log.cpp
         logger/service/file/FileLoggingService.cpp
         logger/service/elastic/ElasticLoggingService.cpp

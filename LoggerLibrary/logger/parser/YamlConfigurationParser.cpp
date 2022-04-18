@@ -6,7 +6,6 @@
 
 
 void YamlConfigurationParser::read() {
-//    while(true) {
         YAML::Node config;
         try {
             config = YAML::LoadFile(configFilePath);
@@ -51,12 +50,6 @@ void YamlConfigurationParser::read() {
                 Logger::disableService(2);
             }
         }
-
-        YamlConfigurationParser::enabled = true;
-
-//        std::chrono::seconds timespan(10);
-//        std::this_thread::sleep_for(timespan);
-//    }
 }
 
 

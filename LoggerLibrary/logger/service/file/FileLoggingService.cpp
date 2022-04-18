@@ -3,9 +3,6 @@
 //
 
 #include "FileLoggingService.h"
-#include <stdio.h>
-
-using namespace std;
 
 void FileLoggingService::log(Log* log) {
     if(file)
@@ -24,7 +21,7 @@ FileLoggingService::FileLoggingService(const char* filePath){
     if(file == nullptr){
         file = fopen(logFilePath, "a");
 
-        if(file == 0){
+        if(file == nullptr){
             printf("Logger: Failed to open file at %s", filePath);
         }
     }

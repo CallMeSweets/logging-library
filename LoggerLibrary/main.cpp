@@ -11,18 +11,19 @@ void logzz(int n){
         i++;
 //        std::chrono::seconds timespan(3);
 //        std::this_thread::sleep_for(timespan);
-        Logger::Info("info secret", n);
+//        Logger::Info("info secret", n);
 //        if(i > 100)
 //            break;
 //    }
 }
 
 void logzz2(int n){
-    YamlConfigurationParser::read();
+    Logger::Info("info secret", n);
 }
 
 
 int main() {
+    Logger::readConfiguration();
     logzz2(1);
 
 //    std::thread threads[2];

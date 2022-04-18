@@ -6,6 +6,9 @@
 #define LOGGERLIBRARY_FILELOGGINGSERVICE_H
 
 #include "../LoggingService.h"
+#include <cstdio>
+
+using namespace std;
 
 class FileLoggingService: public LoggingService{
 public:

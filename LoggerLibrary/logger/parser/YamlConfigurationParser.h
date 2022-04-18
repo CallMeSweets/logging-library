@@ -17,7 +17,6 @@ using namespace std;
 
 class YamlConfigurationParser {
 public:
-    inline static int enabled = false;
     inline static const char* configFilePath = "../config.yaml";
 
 public:
