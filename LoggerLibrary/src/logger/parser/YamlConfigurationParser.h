@@ -6,7 +6,7 @@
 #define LOGGERLIBRARY_YAMLCONFIGURATIONPARSER_H
 
 #include <string>
-#include <yaml-cpp/yaml.h>
+#include "yaml-cpp/yaml.h"
 #include <iostream>
 #include "../Logger.h"
 #include "../service/file/FileLoggingService.h"
@@ -17,7 +17,7 @@ using namespace std;
 
 class YamlConfigurationParser {
 public:
-    inline static const char* configFilePath = "../config.yaml";
+    inline static const char* configFilePath = "../resources/config/logger-configuration.yaml";
 
 public:
     static void read();

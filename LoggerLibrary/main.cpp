@@ -1,5 +1,5 @@
-#include "logger/Logger.h"
-#include "logger/parser/YamlConfigurationParser.h"
+#include "src/logger/Logger.h"
+#include "src/logger/parser/YamlConfigurationParser.h"
 
 #include <thread>
 #include <chrono>
@@ -20,20 +20,22 @@ void logzz(int n){
 }
 
 void logzz2(int n){
-    Logger::Info("Tu seba: %s aaaadfdsgsdgsdgsdgdsgsdzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: %d", "afas ", n);
+
 }
 
 int main() {
     Logger::readConfiguration();
-    std::thread threads[10];
-
-    for (int i = 0; i < 10; ++i) {
-        threads[i] = std::thread(logzz2, i);
-    }
-
-    for (int i = 0; i < 10; ++i) {
-        threads[i].join();
-    }
+    Logger::Info("Tu seba: %s aaaadfdsgsdgsdgsdgdsgsdzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: %d %s", "afas ", 1, "aaaa");
+    logzz2(2);
+//    std::thread threads[10];
+//
+//    for (int i = 0; i < 10; ++i) {
+//        threads[i] = std::thread(logzz2, i);
+//    }
+//
+//    for (int i = 0; i < 10; ++i) {
+//        threads[i].join();
+//    }
 
 
     return 0;
