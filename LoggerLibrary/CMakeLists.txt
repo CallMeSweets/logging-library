@@ -13,7 +13,6 @@ set(HEADERS_FILES
         logger/parser/YamlConfigurationParser.h)
 
 set(SOURCES_FILES
-        main.cpp
         logger/Logger.cpp
         logger/model/Log.cpp
         logger/service/file/FileLoggingService.cpp
@@ -27,10 +26,7 @@ FetchContent_Declare(yaml-cpp GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.
         GIT_TAG yaml-cpp-0.7.0)
 FetchContent_MakeAvailable(cpr yaml-cpp)
 
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
 
-add_executable(LoggerLibrary ${SOURCES_FILES} ${HEADERS_FILES})
-target_link_libraries(LoggerLibrary PRIVATE Threads::Threads cpr::cpr yaml-cpp::yaml-cpp)
-
-#add_library(LoggerLibrary ${SOURCE_FILES})
+add_library(loglib STATIC ${SOURCES_FILES})
+target_link_libraries(loglib PRIVATE cpr::cpr yaml-cpp::yaml-cpp)
+set_target_properties(loglib PROPERTIES LINKER_LANGUAGE CXX)
