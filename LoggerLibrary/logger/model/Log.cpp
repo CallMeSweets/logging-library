@@ -4,8 +4,10 @@
 
 #include "Log.h"
 
+#include <utility>
 
-const char* Log::getMessage() {
+
+string Log::getMessage() {
     return message;
 }
 
@@ -21,12 +23,8 @@ const char* Log::getTimestamp() {
     return this -> timestamp;
 }
 
-int Log::getArgs() {
-    return this -> args;
-}
-
-void Log::setMessage(const char* newMessage){
-    this->message = newMessage;
+void Log::setMessage(string newMessage){
+    this->message = std::move(newMessage);
 }
 
 void Log::setPriority(LogPriority::LogPriority newPriority){
@@ -37,10 +35,6 @@ void Log::setTimestamp(const char* newTimestamp) {
     this -> timestamp = newTimestamp;
 }
 
-void Log::setArgs(int newArgs){
-    this -> args = newArgs;
-}
-
 string Log::toJson() {
     string begin = "{";
     string end = "}";
@@ -48,8 +42,7 @@ string Log::toJson() {
             begin
             + "\"timestamp\": " + "\"" + this->getTimestamp()+ "\","
             + "\"message\": " + "\"" + this->getMessage()+ "\","
-            + "\"priority\": " + "\"" + this->getPriorityName()+ "\","
-            + "\"args\": " + "\"" + to_string(this->getArgs()) + "\"    " +
+            + "\"priority\": " + "\"" + this->getPriorityName()+ "\"" +
             end
             ;
 

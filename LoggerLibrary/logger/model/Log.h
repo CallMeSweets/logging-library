@@ -13,22 +13,19 @@ using namespace std;
 
 class Log {
 private:
-    const char* message;
+    string message;
     const char* timestamp;
-    int args;
     LogPriority::LogPriority priority;
 public:
-    const char* getMessage();
+    string getMessage();
     const char* getPriorityName();
     const char* getTimestamp();
-    int getArgs();
     LogPriority::LogPriority getPriority();
     string toJson();
 
-    void setMessage(const char* newMessage);
+    void setMessage(string newMessage);
     void setTimestamp(const char* newTimestamp);
     void setPriority(LogPriority::LogPriority newPriority);
-    void setArgs(int newArgs);
 };
 
 

@@ -9,7 +9,7 @@ void FileLoggingService::log(Log* log) {
     {
         fprintf(file, "%s\t", log -> getTimestamp());
         fprintf(file, "%s", log -> getPriorityName());
-        fprintf(file, log -> getMessage(), log -> getArgs());
+        fprintf(file, log -> getMessage().c_str(), "");
         fprintf(file, "\n");
     }
 

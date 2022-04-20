@@ -3,12 +3,14 @@
 
 #include <thread>
 #include <chrono>
+#include <iostream>
 
+using namespace std;
 
 void logzz(int n){
     int i = 0;
 //    while(true){
-        i++;
+    i++;
 //        std::chrono::seconds timespan(3);
 //        std::this_thread::sleep_for(timespan);
 //        Logger::Info("info secret", n);
@@ -18,28 +20,20 @@ void logzz(int n){
 }
 
 void logzz2(int n){
-    Logger::Info("info secret", n);
+    Logger::Info("Tu seba: %s aaaadfdsgsdgsdgsdgdsgsdzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: %d", "afas ", n);
 }
-
 
 int main() {
     Logger::readConfiguration();
-    logzz2(1);
-
-//    std::thread threads[2];
+    std::thread threads[10];
 
     for (int i = 0; i < 10; ++i) {
-        logzz(i);
-//        if(i < 2){
-//            threads[i] = std::thread(logzz, i);
-//        } else {
-//            threads[i] = std::thread(logzz2, i);
-//        }
+        threads[i] = std::thread(logzz2, i);
     }
 
-//    for (int i = 0; i < 2; ++i) {
-//        threads[i].join();
-//    }
+    for (int i = 0; i < 10; ++i) {
+        threads[i].join();
+    }
 
 
     return 0;

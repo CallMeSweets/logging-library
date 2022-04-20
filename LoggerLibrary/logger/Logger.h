@@ -13,6 +13,7 @@
 #include "model/LogPriority.h"
 #include <list>
 #include <iostream>
+#include <cstdarg>
 
 using namespace std;
 
@@ -89,15 +90,17 @@ private:
     void log(Log* log);
 
     template<typename... Args>
-    Log* makeLog(LogPriority::LogPriority log_priority, const char* message, Args... args)
+    Log* makeLog(LogPriority::LogPriority log_priority, const char* formatMessage, Args... args)
     {
         Log* log = new Log();
-        log -> setMessage(message);
+        log -> setMessage(format(formatMessage, args...));
         log -> setPriority(log_priority);
         log -> setTimestamp(getCurrentTimestamp());
-        log -> setArgs(args...);
+
         return log;
     }
+
+    std::string format(const char* fmt, ...);
 
     static char* getCurrentTimestamp();
     void pushBackService(LoggingService* loggingService);

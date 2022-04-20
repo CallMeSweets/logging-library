@@ -34,16 +34,16 @@ void Logger::log(Log* log)
 {
     if(priority <= log -> getPriority())
     {
+
         std::scoped_lock lock(log_mutex);
         printf("%s\t", log -> getTimestamp());
         printf("%s", log -> getPriorityName());
-        printf(log -> getMessage(), log -> getArgs());
+        printf(log -> getMessage().c_str(), "");
         printf("\n");
 
         if(!services.empty())
         {
             for (const auto &service : services){
-                cout << "instance: " << service -> instance();
                 service->log(log);
             }
         }
@@ -70,4 +70,23 @@ void Logger::freeService(int instance) {
 
 void Logger::readConfiguration() {
     YamlConfigurationParser::read();
+}
+
+string Logger::format(const char* fmt, ...){
+    int size = 512;
+    char* buffer = 0;
+    buffer = new char[size];
+    va_list vl;
+    va_start(vl, fmt);
+    int nsize = vsnprintf(buffer, size, fmt, vl);
+    if(size<=nsize){ //fail delete buffer and try again
+        delete[] buffer;
+        buffer = 0;
+        buffer = new char[nsize+1]; //+1 for /0
+        nsize = vsnprintf(buffer, size, fmt, vl);
+    }
+    std::string ret(buffer);
+    va_end(vl);
+    delete[] buffer;
+    return ret;
 }
