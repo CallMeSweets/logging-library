@@ -14,8 +14,6 @@ void ElasticLoggingService::send(Log* log)
     string body = log -> toJson();
     cpr::Url urlEs{this -> url};
     cpr::Response response = cpr::Post(urlEs, cpr::Header{{"Content-Type", "application/json"}}, cpr::Body{body});
-
-    delete log;
 }
 
 ElasticLoggingService::ElasticLoggingService(const string& newIndexName, const string& newHost, const string& newPort)

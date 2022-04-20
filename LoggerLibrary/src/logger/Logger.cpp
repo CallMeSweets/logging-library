@@ -47,6 +47,8 @@ void Logger::log(Log* log)
                 service->log(log);
             }
         }
+
+        delete log;
     }
 }
 

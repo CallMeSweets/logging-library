@@ -12,8 +12,6 @@ void FileLoggingService::log(Log* log) {
         fprintf(file, log -> getMessage().c_str(), "");
         fprintf(file, "\n");
     }
-
-    delete log;
 }
 
 FileLoggingService::FileLoggingService(const char* filePath){

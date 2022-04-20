@@ -1,0 +1,11 @@
+logger:
+  priority: TRACE
+service:
+  file:
+    enable: true
+    path: ../log.txt
+  elastic:
+    enable: true
+    index: logging-04-2022
+    host: localhost
+    port: 9200
